@@ -5,4 +5,4 @@ This simple theme component reverts the annoying enter button submission behavio
 
 There are no settings. Simply install the theme component as usual and refresh your browser.   
 
-<img width="50%" height="50%" alt="image" src="https://github.com/user-attachments/assets/7196b649-c28b-4fad-904d-2d1a98ccdf9f" />
+<img width="75%" height="75%" alt="image" src="https://github.com/user-attachments/assets/7196b649-c28b-4fad-904d-2d1a98ccdf9f" />
