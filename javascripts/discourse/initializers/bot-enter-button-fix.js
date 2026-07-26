@@ -5,20 +5,20 @@ export default {
   initialize() {
     withPluginApi("1.13.0", () => {
       
-      // intercept the 'beforeinput' event in the capturing phase
       document.addEventListener("beforeinput", (e) => {
         const target = e.target;
-        
-        // target the exact id of the textarea from ai-bot-conversations.gjs
         if (target && target.id === "ai-bot-conversations-input") {
-          
-          // "insertLineBreak" is the event triggered by pressing the enter key
           if (e.inputType === "insertLineBreak") {
-            
-            // halt the event here so the discourse-ai plugin never sees it
+            e.stopImmediatePropagation(); 
+          }
+        }
+      }, { capture: true });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
+          const target = e.target;
+          if (target && target.closest && target.closest(".ai-bot-docked-composer")) {
             e.stopImmediatePropagation();
-            
-            // the browser will natively insert a line break!
           }
         }
       }, { capture: true });
