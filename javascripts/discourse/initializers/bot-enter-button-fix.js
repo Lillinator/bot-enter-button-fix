@@ -7,18 +7,18 @@ export default {
       
       document.addEventListener("beforeinput", (e) => {
         const target = e.target;
-        if (!target) return;
-        
-        const isFirstMessageUI = target.id === "ai-bot-conversations-input";
-        
-        const isDockedUI = target.closest && target.closest(".ai-bot-docked-composer");
-        
-        if (isFirstMessageUI || isDockedUI) {
-          
+        if (target && target.id === "ai-bot-conversations-input") {
           if (e.inputType === "insertLineBreak") {
-            
+            e.stopImmediatePropagation(); 
+          }
+        }
+      }, { capture: true });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.metaKey) {
+          const target = e.target;
+          if (target && target.closest && target.closest(".ai-bot-docked-composer")) {
             e.stopImmediatePropagation();
-            
           }
         }
       }, { capture: true });
